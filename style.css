@@ -1,9 +1,15 @@
 header {
     padding: 20px;
-    text-align: center;
+    
     background: rgb(174, 201, 134);
     font-size: 30px;
 }
+
+
+#title {
+    text-align: center;
+}
+
 
 footer {
     background-color: #99BC76;
@@ -34,3 +40,4 @@ footer {
     display: block;
     clear: both;
 }
+
