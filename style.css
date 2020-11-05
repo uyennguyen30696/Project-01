@@ -4,3 +4,33 @@ header {
     background: rgb(174, 201, 134);
     font-size: 30px;
 }
+
+footer {
+    background-color: #99BC76;
+    height: 55px;
+}
+
+.contact {
+    padding: 13px;
+} 
+
+.email {
+    position: absolute;
+}
+
+.facebook {
+    position: absolute;
+    float: left;
+    padding-left: 50px;
+}
+
+.instagram {
+    position: absolute;
+    padding-left: 100px;
+}
+
+.clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
