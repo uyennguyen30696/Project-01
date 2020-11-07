@@ -52,6 +52,9 @@ $('.searchBtn').on('click', function(event) {
                 }
             }).then(function(searchResponse){
                 console.log(searchResponse)
+
+                $('.results').empty()
+
                 for (var i = 0; i < searchResponse.restaurants.length; i++) {
                     console.log(searchResponse.restaurants[i].restaurant.name)
                     
