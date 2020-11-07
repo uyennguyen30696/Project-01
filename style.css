@@ -5,6 +5,15 @@ header {
     font-size: 30px;
 }
 
+#start-location {
+    width: 30%;
+}
+
+#get-direction {
+    background-color: #99BC76;
+    padding: 2px;
+}
+
 footer {
     background-color: #99BC76;
     height: 55px;
