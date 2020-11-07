@@ -27,7 +27,7 @@ $('.searchBtn').on('click', function(event) {
     event.preventDefault()
     var citySearch = cityInput.value
     var cuisineSearch = cuisineInput.value
-    // console.log(searched)
+    var capitalCuisineSearch = cuisineSearch.charAt(0).toUpperCase() + cuisineSearch.slice(1) 
 
     var cityUrl = "https://developers.zomato.com/api/v2.1/cities?q=" + citySearch
 
@@ -55,8 +55,7 @@ $('.searchBtn').on('click', function(event) {
             console.log(cuisineResponse)
 
             for (var i = 0; i < cuisineResponse.cuisines.length; i++) {
-                if (cuisineResponse.cuisines[i].cuisine.cuisine_name === cuisineSearch) {
-                    // works if uppercase first letter
+                if (cuisineResponse.cuisines[i].cuisine.cuisine_name === capitalCuisineSearch) {
                     var cuisineId = cuisineResponse.cuisines[i].cuisine.cuisine_id
                     console.log(cuisineId)
                 }
