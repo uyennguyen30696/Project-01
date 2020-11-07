@@ -9,6 +9,16 @@ AS A food enthusiast
 I WANT to find local restaurants based on ratings and cuisine type
 SO THAT I can try new food in my area
 
+# Acceptance Criteria
+- when user opens the app, 
+- then it shows stock image of food
+- when user searches city and cuisine type, 
+- then given top 5 results
+- when user clicks a restaurant, 
+- then given pictures of the food and map location
+- when user clicks the map, 
+- then given directions to the restaurant
+
 # Image
 ![screenshot](./screenshot.png)
 
