@@ -11,13 +11,17 @@ if (navigator.geolocation) { //check if geolocation is available
         var currentLon = currentPosition.coords.longitude;
         console.log("user current lon " + currentLon);
 
-        var map = L.map("map").setView([0, 0], 1);
+        // var map = L.map("map").setView([0, 0], 1);
+        var map = L.map('map', {
+            center: [currentLat, currentLon],
+            zoom: 11
+        });
         L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=1cDoXwZ3HkYYDyqg9QkZ", {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
         }).addTo(map);
 
         // Add marker for user current location
-        marker = L.marker([currentLat, currentLon]).addTo(map);
+        markerUser = L.marker([currentLat, currentLon]).addTo(map);
 
         // function openRouteMap() {
         //     var APIKey = "5b3ce3597851110001cf624823016920625e4e46933015e7a19f69e6";
@@ -147,6 +151,17 @@ if (navigator.geolocation) { //check if geolocation is available
                             }).then(function (directionResponse) {
                                 console.log(directionResponse);
                             });
+
+                            // Marker color is changed thanks to an open source project from https://awesomeopensource.com/project/pointhi/leaflet-color-markers
+                            var redIcon = new L.Icon({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41],
+                                popupAnchor: [1, -34],
+                                shadowSize: [41, 41]
+                              });
+                            markerRestaurant = L.marker([endLat, endLon], {icon: redIcon}).addTo(map);
                         }
                     })
 
