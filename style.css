@@ -1,7 +1,7 @@
 header {
     padding: 20px;
     
-    background: rgb(174, 201, 134);
+    background: rgb(255, 238, 109);
     font-size: 40px;
 }
 
@@ -54,4 +54,14 @@ footer {
     
 }
 
+input.cityInput {
+    border-radius: 15px;
+}
 
+input.cuisineInput {
+    border-radius: 15px;
+}
+
+button.button.search.Btn {
+    border-radius: 15px;
+}
