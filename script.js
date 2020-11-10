@@ -41,7 +41,9 @@ if (navigator.geolocation) { //check if geolocation is available
         var cuisineInput = document.querySelector('.cuisineInput')
         var zomatoAPI = 'c61ed7f7b90c2b61c273faede7a9d47c'
 
+        var restArray = []
 
+        // when search button is clicked
         $('.searchBtn').on('click', function (event) {
             event.preventDefault()
             var citySearch = cityInput.value
@@ -50,7 +52,7 @@ if (navigator.geolocation) { //check if geolocation is available
 
             var cityUrl = "https://developers.zomato.com/api/v2.1/cities?q=" + citySearch
 
-
+            // gets users city
             $.ajax({
                 url: cityUrl,
                 method: 'GET',
@@ -64,6 +66,7 @@ if (navigator.geolocation) { //check if geolocation is available
 
                 var cuisineUrl = "https://developers.zomato.com/api/v2.1/cuisines?city_id=" + cityId
 
+                // gets cuisine id
                 $.ajax({
                     url: cuisineUrl,
                     method: 'GET',
@@ -82,6 +85,7 @@ if (navigator.geolocation) { //check if geolocation is available
 
                     var searchUrl = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityId + "&entity_type=city&count=5"  + "&lat=" + currentLat + "&lon=" + currentLon + "&cuisines=" + cuisineId
 
+                    // combines city and cuisine id for restaurant search
                     $.ajax({
                         url: searchUrl,
                         method: 'GET',
@@ -93,28 +97,24 @@ if (navigator.geolocation) { //check if geolocation is available
 
                         $('.results').empty()
 
+                        // gets info from response to put on each card
                         for (var i = 0; i < searchResponse.restaurants.length; i++) {
                             console.log(searchResponse.restaurants[i].restaurant.name)
+                            restArray.push(searchResponse.restaurants[i])
 
                             var restName = "<div class='restName'>" + searchResponse.restaurants[i].restaurant.name + "</div>"
                             var restAddress = "<div>Address: " + searchResponse.restaurants[i].restaurant.location.address + "</div>"
                             var restRating = "<div>Rating: " + searchResponse.restaurants[i].restaurant.user_rating.aggregate_rating + "</div>"
                             var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div><hr>"
 
+
                             var eachresult = $('<div class="card restaurant">')
+                            eachresult.attr("data-restaurantName", searchResponse.restaurants[i].restaurant.name)
                             $(eachresult).append(restName, restAddress, restRating, restPhone)
                             $('.results').append(eachresult)
 
 
-
-                            $('.restaurant').on('click', function (event) {
-                                event.stopPropagation()
-                                console.log($(this).text())
-
-                                // doesnt work
-                                // console.log(searchResponse.$(this).restaurant.menu_url)
-
-                            })
+                            console.log(restArray)
 
                             // Map start here
                             // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,7 +128,7 @@ if (navigator.geolocation) { //check if geolocation is available
                                 url: queryLocalityURL,
                                 method: "GET"
                             }).then(function (localityResponse) {
-                                console.log(localityResponse);
+                                // console.log(localityResponse);
                             });
 
                             // Direction from start point, user current location (or point A) to end point, restaurant address (or point B) 
@@ -149,7 +149,7 @@ if (navigator.geolocation) { //check if geolocation is available
                                 url: queryDirectionURL,
                                 method: "GET"
                             }).then(function (directionResponse) {
-                                console.log(directionResponse);
+                                // console.log(directionResponse);
                             });
 
                             // Marker color is changed thanks to an open source project from https://awesomeopensource.com/project/pointhi/leaflet-color-markers
@@ -163,6 +163,41 @@ if (navigator.geolocation) { //check if geolocation is available
                               });
                             markerRestaurant = L.marker([endLat, endLon], {icon: redIcon}).addTo(map);
                         }
+
+                        // click event for each result card
+                        $('.restaurant').on('click', function (event) {
+                            event.stopPropagation()
+                            console.log($(this).data("restaurantname"))
+
+                            for (var i = 0; i < restArray.length; i++) {
+
+                                if ($(this).data("restaurantname") === restArray[i].restaurant.name) {
+                                    // gets error, not sure if its possible to do --> photos
+                                   console.log(restArray[i].restaurant.photos_url)
+                                   var photos = restArray[i].restaurant.photos_url
+                                   var photosEl = $('<img>')
+                                   photosEl.attr('src', photos)
+                                   $(this).append(photosEl)
+
+                                    // ugly --> link to menu
+                                   console.log(restArray[i].restaurant.menu_url)
+                                   var menu = $('<div>' + restArray[i].restaurant.menu_url + '</div>' )  
+                                   $(this).append(menu)
+
+
+
+
+                                }
+
+                            }
+
+                            
+
+
+                            
+                           
+
+                        })
                     })
 
                 })
