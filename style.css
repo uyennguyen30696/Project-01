@@ -18,7 +18,8 @@ header {
 }
 
 footer {
-    background-color: #99BC76;
+    /* background-color: #99BC76; */
+    background-color: rgb(255, 238, 109);
     height: 55px;
 }
 
