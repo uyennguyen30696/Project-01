@@ -5,34 +5,41 @@
 // Function to determine user current location
 if (navigator.geolocation) { //check if geolocation is available
     navigator.geolocation.getCurrentPosition(function (currentPosition) {
+
         console.log(currentPosition);
+
         var currentLat = currentPosition.coords.latitude;
         console.log("user current lat " + currentLat);
         var currentLon = currentPosition.coords.longitude;
         console.log("user current lon " + currentLon);
 
-        // var map = L.map("map").setView([0, 0], 1);
+        // var map = L.map("map").setView([0, 0], 1); (If want the map to be in full screen)
         var map = L.map('map', {
             center: [currentLat, currentLon],
             zoom: 11
         });
+
         L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=1cDoXwZ3HkYYDyqg9QkZ", {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
         }).addTo(map);
 
         // Add marker for user current location
         markerUser = L.marker([currentLat, currentLon]).addTo(map);
+        // Add pop up on top of the user current location marker
+        L.marker([currentLat, currentLon]).addTo(map)
+            .bindPopup('You are here')
+            .openPopup();
 
         // function openRouteMap() {
-        //     var APIKey = "5b3ce3597851110001cf624823016920625e4e46933015e7a19f69e6";
-        //     var queryURL = "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIKey + "&start=8.681495,49.41461" + "&end=8.687872,49.420318";
+        var APIKey = "5b3ce3597851110001cf624823016920625e4e46933015e7a19f69e6";
+        var queryURL = "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIKey + "&start=8.681495,49.41461" + "&end=8.687872,49.420318";
 
-        //     $.ajax({
-        //         url: queryURL,
-        //         method: "GET"
-        //       }).then(function(response) {
-        //         console.log(response);
-        //       });
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
 
         // }
         // openRouteMap();
@@ -41,9 +48,18 @@ if (navigator.geolocation) { //check if geolocation is available
         var cuisineInput = document.querySelector('.cuisineInput')
         var zomatoAPI = 'c61ed7f7b90c2b61c273faede7a9d47c'
 
+        var markers = []
+        var markerGroup = L.layerGroup(markers).addTo(map)
 
         $('.searchBtn').on('click', function (event) {
             event.preventDefault()
+
+            // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
+            if (markers.length) {
+                markers = []
+                markerGroup.clearLayers()
+            }
+
             var citySearch = cityInput.value
             var cuisineSearch = cuisineInput.value
             var capitalCuisineSearch = cuisineSearch.charAt(0).toUpperCase() + cuisineSearch.slice(1)
@@ -129,13 +145,17 @@ if (navigator.geolocation) { //check if geolocation is available
                                 method: "GET"
                             }).then(function (localityResponse) {
                                 console.log(localityResponse);
-                            });
+                            }).catch(function (error) {
+                                console.log(error)
+                            })
 
                             // Direction from start point, user current location (or point A) to end point, restaurant address (or point B) 
                             // Doesn't work yet
                             // Get user current location (point A)
                             var startLat = currentLat;
+                            console.log(startLat)
                             var startLon = currentLon;
+                            console.log(startLon)
 
                             // Get coordinates (lat and lon) of restaurant from Zomato (point B)
                             var endLat = searchResponse.restaurants[i].restaurant.location.latitude;
@@ -152,6 +172,7 @@ if (navigator.geolocation) { //check if geolocation is available
                                 console.log(directionResponse);
                             });
 
+
                             // Marker color is changed thanks to an open source project from https://awesomeopensource.com/project/pointhi/leaflet-color-markers
                             var redIcon = new L.Icon({
                                 iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -160,18 +181,32 @@ if (navigator.geolocation) { //check if geolocation is available
                                 iconAnchor: [12, 41],
                                 popupAnchor: [1, -34],
                                 shadowSize: [41, 41]
-                              });
-                            markerRestaurant = L.marker([endLat, endLon], {icon: redIcon}).addTo(map);
+                            });
+
+                            // This add new markers after user hit search again, the old markers are cleared from the code under the onclick function of the search button
+                            markerRestaurant = L.marker([endLat, endLon], { icon: redIcon });
+                            
+                            markers.push(markerRestaurant)
+                            markerGroup = L.layerGroup(markers).addTo(map)
+
+                            // Add pop up on top of the restaurant marker
+                            // L.marker([endLat, endLon]).addTo(map)
+                            //     .bindPopup(searchResponse.restaurants[i].restaurant.name)
+                            //     .openPopup();
                         }
+
                     })
 
                 })
 
             })
+
         })
     });
 } else {
     console.log("Can't determine your location");
+
 }
 
 
+// {"coordinates":[[37.421056,-121.8445312],[37.3359861111,-121.8941333333]],"radiuses":[500,500]}
