@@ -65,3 +65,12 @@ input.cuisineInput {
 button.button.search.Btn {
     border-radius: 15px;
 }
+
+.restName {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.results {
+    float: left;
+}

@@ -80,7 +80,7 @@ if (navigator.geolocation) { //check if geolocation is available
                         }
                     }
 
-                    var searchUrl = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityId + "&entity_type=city&count=5&cuisines=" + cuisineId
+                    var searchUrl = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityId + "&entity_type=city&count=5"  + "&lat=" + currentLat + "&lon=" + currentLon + "&cuisines=" + cuisineId
 
                     $.ajax({
                         url: searchUrl,
@@ -96,7 +96,7 @@ if (navigator.geolocation) { //check if geolocation is available
                         for (var i = 0; i < searchResponse.restaurants.length; i++) {
                             console.log(searchResponse.restaurants[i].restaurant.name)
 
-                            var restName = "<div class='name'>Name: " + searchResponse.restaurants[i].restaurant.name + "</div>"
+                            var restName = "<div class='restName'>" + searchResponse.restaurants[i].restaurant.name + "</div>"
                             var restAddress = "<div>Address: " + searchResponse.restaurants[i].restaurant.location.address + "</div>"
                             var restRating = "<div>Rating: " + searchResponse.restaurants[i].restaurant.user_rating.aggregate_rating + "</div>"
                             var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div><hr>"
@@ -112,7 +112,7 @@ if (navigator.geolocation) { //check if geolocation is available
                                 console.log($(this).text())
 
                                 // doesnt work
-                                console.log(searchResponse.$(this).restaurant.menu_url)
+                                // console.log(searchResponse.$(this).restaurant.menu_url)
 
                             })
 
