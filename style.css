@@ -1,3 +1,5 @@
+
+
 header {
     padding: 20px;
     
@@ -7,6 +9,7 @@ header {
 
 
 #title {
+    display: relative;
     float: left;
     width: 500px;
 }
@@ -15,12 +18,18 @@ header {
     position: relative;
     width: 700px;
     height: 500px;
+    align-content: center;
+}
+
+main {
+    background: rgb(91, 204, 91);
 }
 
 footer {
     /* background-color: #99BC76; */
     background-color: rgb(255, 238, 109);
-    height: 55px;
+    height: 70px;
+    margin-bottom: 0px;
 }
 
 .contact {
@@ -68,10 +77,28 @@ button.button.search.Btn {
 }
 
 .restName {
-    font-size: 25px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .results {
     float: left;
+}
+
+.card.restaurant {
+    height: 10%;
+    border-radius: 20px;
+}
+
+.top5picks {
+    color: crimson;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 20px;
+    width: 200px;
+    height: 40px;
+    background: rgb(255, 238, 109);
+    border-radius: 10px;
 }
