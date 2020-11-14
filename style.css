@@ -11,6 +11,10 @@ header {
     width: 500px;
 }
 
+.map-container {
+    padding: 20px;
+}
+
 #map {
     position: relative;
     width: 700px;
@@ -48,7 +52,7 @@ footer {
     clear: both;
 }
 
-.card {
+.card-restaurant {
     margin: 10px;
     padding: 20px;
     width: auto;
