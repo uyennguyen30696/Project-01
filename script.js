@@ -152,7 +152,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                             $(".get-direction").text("Get direction");
                             $(".get-direction").css("textDecoration", "underline");
                             // $(".get-direction").attr("href", "map.html");
-                            $(".get-direction").attr("data-address", searchResponse.restaurants[i].restaurant.location.address); */
+                            $(".get-direction").attr("data-address", searchResponse.restaurants[i].restaurant.location.address); 
+                            
                             addressArray.push(searchResponse.restaurants[i].restaurant.location.address);
 
                             var getDirectionButton = $("<a class='get-direction' target='_blank'>"); 
@@ -255,8 +256,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                 }
                             }
 
-                                } 
-                            } 
 
                         }) 
                     })
