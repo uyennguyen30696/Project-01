@@ -1,6 +1,6 @@
 // Restaurant addresses 
 // var addressArray = [];
-// console.log(addressArray);
+console.log(addressArray);
 
 // Current coords global
 // var currentLocationArray = [];
@@ -58,19 +58,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
         dir.route({
             locations: [
                 // '37.421056,-121.8445312',
-                // (currentLocationArray),
-                // console.log((currentLocationArray)),
-                // (currentLatArray) + (currentLonArray),
-                // console.log((currentLatArray) + (currentLonArray)),
-                // (currentLat).toString(), (currentLon).toString(),
-                // console.log((currentLat).toString(), (currentLon).toString()),
-                // currentLocationArray.toString(),
-                // console.log(currentLocationArray.toString()),
-                // center.toString(),
-                // console.log(center.toString()),
-                // convertedAddressArray,
-                // console.log(convertedAddressArray),
-                // convertedAddress,
                 JSON.stringify(convertedCurrentAddressArray),
                 '37.3359861111,-121.8941333333'
             ],
@@ -104,7 +91,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
             directions: dir,
             fitBounds: true,
             ribbonOptions: {
-                ribbonDisplay: { color: '#0085CC' },
+            ribbonDisplay: { color: '#0085CC' },
             }
         }));
     });

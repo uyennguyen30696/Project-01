@@ -6,6 +6,10 @@
 var addressArray = [];
 console.log(addressArray);
 
+// $(".get-direction").on("click", function() {
+//     console.log($(this))
+// })
+
 // Function to determine user current location
 //check if geolocation is available
 navigator.geolocation.getCurrentPosition(function (currentPosition) {
@@ -120,10 +124,21 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                             var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div>"
 
                             // Add get direction clickable for each restaurant
-                            var getDirectionButton = "<a class='get-direction'>";
+                            /* var getDirectionButton = "<buton class='get-direction'>"; 
+                            // "target_blank"
                             $(".get-direction").text("Get direction");
                             $(".get-direction").css("textDecoration", "underline");
-                            $(".get-direction").attr("href", "map.html");
+                            // $(".get-direction").attr("href", "map.html");
+                            $(".get-direction").attr("data-address", searchResponse.restaurants[i].restaurant.location.address); */
+                            addressArray.push(searchResponse.restaurants[i].restaurant.location.address);
+
+                            var getDirectionButton = $("<a class='get-direction' target='_blank'>"); 
+                            // "target_blank"
+                            
+                            getDirectionButton.text("Get direction");
+                            getDirectionButton.css("textDecoration", "underline");
+                            getDirectionButton.attr("href", "map.html");
+
 
                             var eachresult = $('<div class="card restaurant">')
                             eachresult.attr("data-restaurantName", searchResponse.restaurants[i].restaurant.name)
@@ -204,10 +219,10 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                     console.log(restArray[i].restaurant.menu_url)
                                     var menu = $('<a class="menu" href=' + restArray[i].restaurant.menu_url + ' target="_blank">Link to menu</a>')
 
-                                    $(this).append(menu)
+                                    $(this).append(menu) 
 
-                                }
-                            }
+                                } 
+                            } 
                         }) 
                     })
                 
