@@ -1,22 +1,6 @@
 
 // Google map API key
 // var APIKey = "AIzaSyC680UklKEr_A2g5vrcu9R1x1ziJir4GBU";
-// var APIMapKey = "5b3ce3597851110001cf624823016920625e4e46933015e7a19f69e6";
-// var queryDirectionURL = "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIMapKey + "&start=" + "37.421056,-121.844531" + "&end=" + "37.335986,-121.894133";
-
-// $.ajax({
-//     url: queryDirectionURL,
-//     method: "GET"
-// }).then(function (directionResponse) {
-//     console.log(directionResponse);
-// });
-
-// Global variables
-// User current location
-// var currentLatArray = [];
-// console.log(currentLatArray);
-// var currentLonArray = [];
-// console.log(currentLonArray);
 
 // Restaurant addresses 
 var addressArray = [];
@@ -53,40 +37,18 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
         .bindPopup('You are here')
         .openPopup();
 
-    // function openRouteMap() {
-    var APIKey = "5b3ce3597851110001cf624823016920625e4e46933015e7a19f69e6";
-    var queryURL = "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIKey + "&start=8.681495,49.41461" + "&end=8.687872,49.420318";
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-    });
+    // $('.searchBtn').on('click', function (event) {
+    //     event.preventDefault()
 
-    // }
-    // openRouteMap();
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    var cityInput = document.querySelector('.cityInput')
-    var cuisineInput = document.querySelector('.cuisineInput')
-    var zomatoAPI = 'c61ed7f7b90c2b61c273faede7a9d47c'
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     }).then(function (response) {
+    //         console.log(response);
+    //     });
 
-
-    var markers = []
-    var markerGroup = L.layerGroup(markers).addTo(map)
-
-    $('.searchBtn').on('click', function (event) {
-        event.preventDefault()
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-
-        // }
-        // openRouteMap();
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         var cityInput = document.querySelector('.cityInput')
         var cuisineInput = document.querySelector('.cuisineInput')
@@ -102,13 +64,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
         // when search button is clicked
         $('.searchBtn').on('click', function (event) {
             event.preventDefault()
-
-            // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
-            if (markers.length) {
-                markers = []
-                markerGroup.clearLayers()
-            }
-
 
             // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
             if (markers.length) {
@@ -416,7 +371,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
         })
     });
-});
+
 
 // {"coordinates":[[37.421056,-121.8445312],[37.3359861111,-121.8941333333]],"radiuses":[500,500]}
 
