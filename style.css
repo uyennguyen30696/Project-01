@@ -49,11 +49,13 @@ button.button.search.Btn {
 
 .results {
     float: left;
+    margin-top: 10px;
 }
 
 .card.restaurant {
     height: 10%;
     border-radius: 20px;
+    padding: 20px;
 }
 
 .restaurant:hover {
@@ -71,10 +73,21 @@ button.button.search.Btn {
     height: 40px;
     background: rgb(255, 238, 109);
     border-radius: 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
 }
 
 .menu {
     line-height: 3;
+}
+
+
+.card.pastResults {
+    height: 10%;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 footer {
@@ -108,3 +121,4 @@ footer {
     display: block;
     clear: both;
 }
+
