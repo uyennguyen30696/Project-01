@@ -234,9 +234,5 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     })
 });
 
-
-
-
-
 // {"coordinates":[[37.421056,-121.8445312],[37.3359861111,-121.8941333333]],"radiuses":[500,500]}
 
