@@ -124,7 +124,7 @@ if (navigator.geolocation) { //check if geolocation is available
                             var restName = "<div class='restName'>" + searchResponse.restaurants[i].restaurant.name + "</div>"
                             var restAddress = "<div>Address: " + searchResponse.restaurants[i].restaurant.location.address + "</div>"
                             var restRating = "<div>Rating: " + searchResponse.restaurants[i].restaurant.user_rating.aggregate_rating + "</div>"
-                            var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div><hr>"
+                            var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div>"
 
 
                             var eachresult = $('<div class="card restaurant">')
@@ -188,15 +188,13 @@ if (navigator.geolocation) { //check if geolocation is available
                             });
 
                             // This add new markers after user hit search again, the old markers are cleared from the code under the onclick function of the search button
-                            markerRestaurant = L.marker([endLat, endLon], { icon: redIcon });
+                            markerRestaurant = L.marker([endLat, endLon], { icon: redIcon })
+                                .bindPopup(searchResponse.restaurants[i].restaurant.name)
+                                .openPopup();
                             
                             markers.push(markerRestaurant)
                             markerGroup = L.layerGroup(markers).addTo(map)
 
-                            // Add pop up on top of the restaurant marker
-                            // L.marker([endLat, endLon]).addTo(map)
-                            //     .bindPopup(searchResponse.restaurants[i].restaurant.name)
-                            //     .openPopup();
                         }
 
 
@@ -204,21 +202,31 @@ if (navigator.geolocation) { //check if geolocation is available
                         $('.restaurant').on('click', function (event) {
                             event.stopPropagation()
                             console.log($(this).data("restaurantname"))
+                            $('.menu').remove()
+                            
 
                             for (var i = 0; i < restArray.length; i++) {
 
                                 if ($(this).data("restaurantname") === restArray[i].restaurant.name) {
+                                    
+
                                     // gets error, not sure if its possible to do --> photos
                                    console.log(restArray[i].restaurant.photos_url)
-                                   var photos = restArray[i].restaurant.photos_url
-                                   var photosEl = $('<img>')
-                                   photosEl.attr('src', photos)
-                                   $(this).append(photosEl)
 
-                                    // ugly --> link to menu
+                                            // var photos = restArray[i].restaurant.photos_url
+                                            // var photosEl = $('<img>')
+                                            // photosEl.attr('src', photos)
+                                            // $(this).append(photosEl)
+
+
+                                    // link to menu --> open in new tab 
                                    console.log(restArray[i].restaurant.menu_url)
-                                   var menu = $('<div>' + restArray[i].restaurant.menu_url + '</div>' )  
+                                   var menu = $('<a class="menu" href=' + restArray[i].restaurant.menu_url + ' target="_blank">Link to menu</a>' )  
+                                
                                    $(this).append(menu)
+
+                                   
+                                       
 
 
 

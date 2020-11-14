@@ -19,6 +19,7 @@ header {
     width: 700px;
     height: 500px;
     align-content: center;
+    margin: 20px 0;
 }
 
 main {
@@ -90,6 +91,10 @@ button.button.search.Btn {
     border-radius: 20px;
 }
 
+.restaurant:hover {
+    border: solid red;
+}
+
 .top5picks {
     color: crimson;
     font-size: 20px;
@@ -101,4 +106,8 @@ button.button.search.Btn {
     height: 40px;
     background: rgb(255, 238, 109);
     border-radius: 10px;
+}
+
+.menu {
+    line-height: 3;
 }
