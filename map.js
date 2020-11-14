@@ -30,7 +30,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
     // Convert user current coordinates to address
     var mapQuestAPIKey = "MFvntZWuvS2jATIO4K9Rwvvg9TnAi8u3";
-    var queryMQURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + mapQuestAPIKey + "&location=" + currentLat + "," + currentLon + "&includeRoadMetadata=true&includeNearestIntersection=true";
+    var queryMQURL = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" + mapQuestAPIKey + "&location=" + currentLat + "," + currentLon + "&includeRoadMetadata=true&includeNearestIntersection=true";
     $.ajax({
         url: queryMQURL,
         method: "GET"
