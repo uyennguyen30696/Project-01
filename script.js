@@ -4,7 +4,27 @@
 
 // Restaurant addresses 
 var addressArray = [];
-console.log(addressArray);
+
+let storedResultsArray = []
+
+init ()
+
+function init () {
+    var storedResults = localStorage.getItem('storedResults');
+    $('.top5picks').html("Previous Search")
+    
+    if (storedResults === null) {
+        var noResults = $('<div class="card pastResults">Never used <span class="restName">Who\'s Hungry </span>before? Give it a try!</div>')
+        console.log(noResults)
+        $('.results').append(noResults)
+    } else {
+        var joinedResults = storedResults.split(",").join("")
+        $('.results').append(joinedResults)
+    
+    }
+}
+
+
 
 // Function to determine user current location
 //check if geolocation is available
@@ -50,6 +70,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     // when search button is clicked
     $('.searchBtn').on('click', function (event) {
         event.preventDefault()
+
 
         // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
         if (markers.length) {
@@ -108,6 +129,9 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         console.log(searchResponse)
 
                         $('.results').empty()
+                        $('.top5picks').html("Top 5 Picks")
+
+                        storedResultsArray = []
 
                         // gets info from response to put on each card
                         for (var i = 0; i < searchResponse.restaurants.length; i++) {
@@ -120,7 +144,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                             var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div>"
 
                             // Add get direction clickable for each restaurant
-                            var getDirectionButton = "<a class='get-direction'>";
+                            var getDirectionButton = "<a class='get-direction' target='_blank'>";
                             $(".get-direction").text("Get direction");
                             $(".get-direction").css("textDecoration", "underline");
                             $(".get-direction").attr("href", "map.html");
@@ -131,6 +155,12 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                             $('.results').append(eachresult)
 
                             console.log(restArray)
+
+                            storedResultsArray.push("<div class='card pastResults'>" +restName+restAddress+restRating+restPhone+ '</div>')
+                            localStorage.setItem('storedResults', storedResultsArray);
+
+                            // storedResultsArray.push(JSON.stringify(eachresult))
+                            // localStorage.setItem('storedResults', storedResultsArray)
 
                             // Map start here
                             // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,6 +235,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                     var menu = $('<a class="menu" href=' + restArray[i].restaurant.menu_url + ' target="_blank">Link to menu</a>')
 
                                     $(this).append(menu)
+
+
 
                                 }
                             }
