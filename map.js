@@ -22,11 +22,11 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
     var currentLat = currentPosition.coords.latitude;
     console.log("user current lat " + currentLat);
-    currentLocationArray.push(currentLat);
+    // currentLocationArray.push(currentLat);
 
     var currentLon = currentPosition.coords.longitude;
     console.log("user current lon " + currentLon);
-    currentLocationArray.push(currentLon);
+    // currentLocationArray.push(currentLon);
 
     // Convert user current coordinates to address
     var mapQuestAPIKey = "MFvntZWuvS2jATIO4K9Rwvvg9TnAi8u3";
