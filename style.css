@@ -22,8 +22,8 @@ header {
     position: relative;
     width: 700px;
     height: 500px;
-    align-content: center;
-    margin: 20px 0;
+    align-content: center; 
+    margin: 20px;
 }
 
 main {
