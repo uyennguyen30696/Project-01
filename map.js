@@ -1,15 +1,8 @@
+// This file is not used in the new update
+
 // Restaurant addresses 
 // var addressArray = [];
 console.log(addressArray);
-
-// Current coords global
-// var currentLocationArray = [];
-// console.log(currentLocationArray);
-
-// var currentLatArray = [];
-// console.log(currentLatArray);
-// var currentLonArray = [];
-// console.log(currentLonArray);
 
 var convertedCurrentAddressArray = [];
 console.log(convertedCurrentAddressArray);
@@ -17,16 +10,12 @@ console.log(convertedCurrentAddressArray);
 navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
     console.log(currentPosition);
-    // currentLocationArray.push(currentPosition);
-
 
     var currentLat = currentPosition.coords.latitude;
     console.log("user current lat " + currentLat);
-    // currentLocationArray.push(currentLat);
 
     var currentLon = currentPosition.coords.longitude;
     console.log("user current lon " + currentLon);
-    // currentLocationArray.push(currentLon);
 
     // Convert user current coordinates to address
     var mapQuestAPIKey = "MFvntZWuvS2jATIO4K9Rwvvg9TnAi8u3";
@@ -40,8 +29,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
         var convertedAddress = coordsToAddress.results[0].locations[0].street;
         convertedCurrentAddressArray.push(convertedAddress);
         console.log(coordsToAddress.results[0].locations[0].street);
-
-        // var latLng = L.latLng(currentLat, currentLon);
 
         var map = L.map('restaurant-map', {
             center: [currentLat, currentLon],

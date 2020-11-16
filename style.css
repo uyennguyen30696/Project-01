@@ -1,12 +1,9 @@
-
-
 header {
     padding: 20px;
     
     background: rgb(255, 238, 109);
     font-size: 40px;
 }
-
 
 #title {
     display: relative;
@@ -83,11 +80,64 @@ button.button.search.Btn {
     line-height: 3;
 }
 
-
-.card.pastResults {
+/* .card.pastResults {
     height: 10%;
     border-radius: 20px;
-    padding: 20px;
+    padding: 20px; 
+} */
+
+.bubble-pastResults {
+	position: relative;
+	background: white;
+    border-radius: 2em; 
+    border: 5px solid;
+    border-color: crimson;
+    height: 300px;
+    width: 550px;
+    text-align: center;
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+.restName {
+    font-size: 35px;
+    color: crimson;
+    font-family: fantasy;
+}
+
+p.bubble-pastResults:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 44%;
+    top: 213px;
+    border: 70px solid;
+    border-color: white transparent transparent white;
+    z-index: 1;   
+}
+
+.bubble-pastResults:after {
+	content: '';
+	position: absolute;
+    bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 80px solid transparent;
+    border-top-color: white;
+	border-bottom: 0; 
+	border-left: 0; 
+	margin-left: -40px;
+    margin-bottom: -80px;
+    border-color: crimson transparent transparent crimson;
+    /* z-index: -1;     */ 
+}
+
+.get-direction {
+    margin-top: 5px;
+    padding: 2px;
+    width: 100px;
 }
 
 footer {
@@ -121,4 +171,3 @@ footer {
     display: block;
     clear: both;
 }
-
