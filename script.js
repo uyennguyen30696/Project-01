@@ -39,6 +39,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     console.log("user current lon " + currentLon);
 
     // var map = L.map("map").setView([0, 0], 1); (If want the map to be in full
+    // initMap(currentPosition.coords);
     var map = L.map('map', {
         center: [currentLat, currentLon],
         zoom: 11
@@ -49,7 +50,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     }).addTo(map);
 
     // Add marker for user current location
-    markerUser = L.marker([currentLat, currentLon]).addTo(map);
+    L.marker([currentLat, currentLon]).addTo(map);
     // Add pop up on top of the user current location marker
     L.marker([currentLat, currentLon]).addTo(map)
         .bindPopup('You are here')
@@ -79,19 +80,22 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     var markers = []
     var markerGroup = L.layerGroup(markers).addTo(map)
 
+    var routeLayers = []
+    var routeGroup = L.layerGroup(routeLayers).addTo(map)
+
     // when search button is clicked
     $('.searchBtn').on('click', function (event) {
         event.preventDefault()
-
+        console.log(map)
 
         // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
         if (markers.length) {
             markers = []
             markerGroup.clearLayers()
+
+            routeLayers = []
+            routeGroup.clearLayers()
         }
-        // else if (map) {
-        //     map.remove();
-        // }
 
         var citySearch = cityInput.value
         var cuisineSearch = cuisineInput.value
@@ -244,6 +248,13 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                 attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
                             }).addTo(map);
 
+                            // Add marker for user current location
+                            L.marker([currentLat, currentLon]).addTo(map);
+                            // Add pop up on top of the user current location marker
+                            L.marker([currentLat, currentLon]).addTo(map)
+                                .bindPopup('You are here')
+                                .openPopup()
+
                             start = JSON.stringify(convertedCurrentAddressArray);
                             end = restaurantAddress;
 
@@ -280,13 +291,16 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                 }
                             });
 
-                            map.addLayer(new CustomRouteLayer({
+                            var routeLayer = new CustomRouteLayer({
                                 directions: dir,
                                 fitBounds: true,
                                 ribbonOptions: {
                                     ribbonDisplay: { color: '#0085CC' },
                                 }
-                            }));
+                            })
+                            // map.addLayer(routeLayer);
+                            routeLayers.push(routeLayer);
+                            routeGroup.addLayer(routeLayer).addTo(map)
                         }
                     });
 
