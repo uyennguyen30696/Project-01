@@ -20,7 +20,7 @@ header {
     width: 95%;
     height: 500px;
     align-content: center; 
-    margin: 20px;
+    margin: 40px 25px;
 }
 
 main {
@@ -64,15 +64,12 @@ button.button.search.Btn {
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
-    margin-left: 50px;
-    margin-top: 20px;
+    margin: 20px auto;
     width: 200px;
     height: 40px;
     background: rgb(255, 238, 109);
     border-radius: 10px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+   
 
 }
 
@@ -80,11 +77,11 @@ button.button.search.Btn {
     line-height: 3;
 }
 
-/* .card.pastResults {
+.card.pastResults {
     height: 10%;
     border-radius: 20px;
     padding: 20px; 
-} */
+}
 
 .bubble-pastResults {
 	position: relative;
