@@ -95,6 +95,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
             routeLayers = []
             routeGroup.clearLayers()
+
         }
 
         var citySearch = cityInput.value
@@ -226,6 +227,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
                     // When get direction button is clicked
                     $(".get-direction").on("click", function (event) {
+                        routeLayers = []
+                        routeGroup.clearLayers()
                         console.log("ButtonId is: " + this.id);
                         console.log("Address is: " + buttonToAddressMapping[this.id]);
                         event.preventDefault();
@@ -237,7 +240,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         }
 
                         // Add direction from current location to each restaurant corresding to each get direction button
-                        function getRoute(start, end) {
+                        function getRoute() {
 
                             // Recreating new map layer
                             map = L.map('map', {
@@ -255,8 +258,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                 .bindPopup('You are here')
                                 .openPopup()
 
-                            start = JSON.stringify(convertedCurrentAddressArray);
-                            end = restaurantAddress;
+                            var start = JSON.stringify(convertedCurrentAddressArray);
+                            var end = restaurantAddress;
 
                             dir = MQ.routing.directions();
                             // var latlng = L.latLng(currentLat, currentLon)
