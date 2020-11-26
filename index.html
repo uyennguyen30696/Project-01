@@ -30,7 +30,6 @@
 
 <body>
 
-
     <header>
 
         <div class="grid-x">
@@ -53,8 +52,10 @@
     <main class="grid-x">
         <div class="grid-container">
             <div class="cell large-6">
-                <div class="container-top5pick">
-                    <p class="top5picks">Top 5 Picks</p>
+                <div class="container-top5picks row hide">
+                    <div class="previous-search"></div>
+                    <div class="top5picks hide">Top 5 Picks</div>
+                    <div class="clear-button"></div>
                 </div>
                 <div class="cell results">
                     <!-- results cards here -->
@@ -72,7 +73,7 @@
             <div class="map-container">
                 <div id="map"></div>
             </div>
-        </div>
+        </div> 
     </main>
 
     <footer class="fixed-bottom">
