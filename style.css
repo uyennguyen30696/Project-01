@@ -1,30 +1,38 @@
 header {
     padding: 20px;
-    
     background: rgb(255, 238, 109);
     font-size: 40px;
+}
+
+.hide {
+    display: none;
 }
 
 #title {
     display: relative;
     float: left;
-    width: 500px;
+    width: 90%;
 }
 
 .map-container {
-    padding: 20px;
+    /* padding: 20px; */
+    padding-top: 50px;
+    padding-right: 30px;
 }
 
 #map {
     position: relative;
     width: 95%;
     height: 500px;
-    align-content: center; 
+    text-align: center;
     margin: 40px 25px;
+    box-shadow: 0px 0px 4px 4px #888888;
 }
 
 main {
-    background: rgb(91, 204, 91);
+    background-image: url("./images/food-by-trang-doan-pexels.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 input.cityInput {
@@ -47,12 +55,14 @@ button.button.search.Btn {
 .results {
     float: left;
     margin-top: 10px;
+    max-width: 600px;
 }
 
 .card.restaurant {
     height: 10%;
     border-radius: 20px;
     padding: 20px;
+    /* min-width: 600px; */
 }
 
 .restaurant:hover {
@@ -69,8 +79,23 @@ button.button.search.Btn {
     height: 40px;
     background: rgb(255, 238, 109);
     border-radius: 10px;
-   
+    float: right;
+}
 
+.clear-button {
+    float: left;
+}
+
+#clear-previous-search {
+    color: crimson;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    margin: 20px auto;
+    width: 200px;
+    height: 40px;
+    background: rgb(255, 238, 109);
+    border-radius: 10px;
 }
 
 .menu {
@@ -80,26 +105,27 @@ button.button.search.Btn {
 .card.pastResults {
     height: 10%;
     border-radius: 20px;
-    padding: 20px; 
+    padding: 20px;
 }
 
 .bubble-pastResults {
-	position: relative;
-	background: white;
-    border-radius: 2em; 
+    position: relative;
+    margin-top: 100px;
+    background: white;
+    border-radius: 2em;
     border: 5px solid;
     border-color: crimson;
     height: 300px;
     width: 550px;
     text-align: center;
     font-size: 30px;
-    font-family: fantasy;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .restName {
     font-size: 35px;
     color: crimson;
-    font-family: fantasy;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 p.bubble-pastResults:before {
@@ -111,24 +137,23 @@ p.bubble-pastResults:before {
     top: 213px;
     border: 70px solid;
     border-color: white transparent transparent white;
-    z-index: 1;   
+    z-index: 1;
 }
 
 .bubble-pastResults:after {
-	content: '';
-	position: absolute;
+    content: '';
+    position: absolute;
     bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 80px solid transparent;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 80px solid transparent;
     border-top-color: white;
-	border-bottom: 0; 
-	border-left: 0; 
-	margin-left: -40px;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -40px;
     margin-bottom: -80px;
     border-color: crimson transparent transparent crimson;
-    /* z-index: -1;     */ 
 }
 
 .get-direction {
@@ -146,7 +171,7 @@ footer {
 
 .contact {
     padding: 13px;
-} 
+}
 
 .email {
     position: absolute;
@@ -167,4 +192,79 @@ footer {
     content: " ";
     display: block;
     clear: both;
+}
+
+@media (max-width: 1260px) {
+    .small-6 {
+        margin-left: 25%;
+    }
+    .map-container {
+        margin-left: -50%;
+        margin-right: -55%;
+    }
+}
+
+@media (max-width: 765px) {
+    .map-container {
+        margin-left: -50%;
+        margin-right: -50%;
+    }
+    #map {
+        height: 400px;
+    }
+    .container-top5picks {
+        max-width: 320px;
+    }
+    .top5picks {
+        float: left;
+    }
+}
+
+@media (max-width: 570px) {
+    #map {
+        height: 300px;
+    }
+    .bubble-pastResults {
+        position: relative;
+        margin-top: 100px;
+        background: white;
+        border-radius: 2em;
+        border: 3px solid;
+        border-color: crimson;
+        max-height: 150px;
+        max-width: 275px;
+        text-align: center;
+        font-size: 13px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .restName {
+        font-size: 18px;
+        color: crimson;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    p.bubble-pastResults:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 34%;
+        top: 94px;
+        border: 50px solid;
+        border-color: white transparent transparent white;
+    }
+    .bubble-pastResults:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 40%;
+        width: 0;
+        height: 0;
+        border: 60px solid transparent;
+        border-top-color: white;
+        border-bottom: 0;
+        border-left: 0;
+        margin-left: -20px;
+        margin-bottom: -60px;
+        border-color: crimson transparent transparent crimson;
+    }
 }

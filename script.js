@@ -11,21 +11,33 @@ console.log(convertedCurrentAddressArray);
 
 let storedResultsArray = []
 
-init()
-
+var clearPreviousSearchBtn = $('<button id="clear-previous-search">Clear history</button>');
 function init() {
     var storedResults = localStorage.getItem('storedResults');
-    $('.top5picks').html("Previous Search")
+    // $('.top5picks').html("Previous Search")
+    $('.container-top5picks').removeClass('hide');
+    $('.clear-button').append(clearPreviousSearchBtn);
+
+    $('#clear-previous-search').on('click', function (event) {
+        event.preventDefault();
+        localStorage.clear();
+        $('.results').addClass("hide");
+        $('.top5picks').addClass("hide");
+    });
 
     if (storedResults === null) {
         var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Who\'s Hungry </span>before? <br> Give it a try!</p>')
         console.log(noResults)
         $('.results').append(noResults)
-    } else {
+        $('#clear-previous-search').remove();
+    }
+    else {
         var joinedResults = storedResults.split(",").join("")
         $('.results').append(joinedResults)
     }
 }
+
+init();
 
 // Function to determine user current location
 navigator.geolocation.getCurrentPosition(function (currentPosition) {
@@ -87,6 +99,16 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     $('.searchBtn').on('click', function (event) {
         event.preventDefault()
         console.log(map)
+
+        $('.top5picks').removeClass("hide");
+        $('.results').removeClass('hide');
+        $('.clear-button').append(clearPreviousSearchBtn);
+        $('#clear-previous-search').on('click', function (event) {
+            event.preventDefault();
+            localStorage.clear();
+            $('.results').addClass("hide");
+            $('.top5picks').addClass("hide");
+        });
 
         // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
         if (markers.length) {
@@ -227,6 +249,11 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
                     // When get direction button is clicked
                     $(".get-direction").on("click", function (event) {
+                        event.preventDefault();
+
+                        // Jump to map view
+                        window.location = "#map";
+
                         routeLayers = []
                         routeGroup.clearLayers()
                         console.log("ButtonId is: " + this.id);
@@ -313,7 +340,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         console.log($(this).data("restaurantname"))
                         $('.menu').remove()
 
-                        for (var i = 0; i < restArray.length; i++) {
+                        // Future development
+                        /* for (var i = 0; i < restArray.length; i++) {
 
                             if ($(this).data("restaurantname") === restArray[i].restaurant.name) {
 
@@ -332,7 +360,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                 $(this).append(menu)
 
                             }
-                        }
+                        } */
                     })
                 })
 
