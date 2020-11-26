@@ -1,6 +1,9 @@
 # Title: Who's Hungry?
 Group 10: Rachel Kroetch, Uyen Nguyen, Tria Thao
 
+## Deploy link: 
+https://uyennguyen30696.github.io/project-01/
+
 ## Project Description
 An app that allows the user to search for restaurants when they want to try some place new.  The app will use the APIs of Zomato and OpenStreetMap, along with Leaflet and MapQuest to provide information about the restaurants as well as directions to the place of their choice. 
 
