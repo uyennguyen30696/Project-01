@@ -181,7 +181,7 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         var restName = "<div class='restName'>" + searchResponse.restaurants[i].restaurant.name + "</div>"
                         var restAddress = "<div>Address: " + searchResponse.restaurants[i].restaurant.location.address + "</div>"
                         var restRating = "<div>Rating: " + searchResponse.restaurants[i].restaurant.user_rating.aggregate_rating + "</div>"
-                        var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers + "</div>"
+                        var restPhone = "<div>Phone: " + searchResponse.restaurants[i].restaurant.phone_numbers.substring(0, 14) + "</div>"
 
                         // Add get direction clickable for each restaurant
                         var getDirectionButton = $("<button class='get-direction'>");
