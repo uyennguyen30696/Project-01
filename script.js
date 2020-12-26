@@ -26,7 +26,7 @@ function init() {
     });
 
     if (storedResults === null) {
-        var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Who\'s Hungry </span>before? <br> Give it a try!</p>')
+        var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Food Hunt </span>before? <br> Give it a try!</p>')
         console.log(noResults)
         $('.results').append(noResults)
         $('#clear-previous-search').remove();

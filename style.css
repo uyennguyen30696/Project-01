@@ -1,6 +1,7 @@
 header {
     padding: 20px;
-    background: rgb(255, 238, 109);
+    background: rgb(255, 238, 109); 
+    /* background-color:#F5D400; */
     font-size: 40px;
 }
 
@@ -11,7 +12,7 @@ header {
 #title {
     display: relative;
     float: left;
-    width: 90%;
+    width: 95%; 
 }
 
 .map-container {
