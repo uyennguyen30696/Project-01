@@ -7,6 +7,13 @@ Visit our project [here](https://uyennguyen30696.github.io/food-hunt-project-01/
 ## Project Description
 An app that allows the user to search for restaurants when they want to try some place new.  The app will use the APIs of Zomato and OpenStreetMap, along with Leaflet and MapQuest to provide information about the restaurants as well as directions to the place of their choice. 
 
+### Important Note
+
+* Please allow location in your device to run the application.
+
+* If you're using Chrome and the map doesn't point to the right location, please update Chrome to the latest version.
+
+
 ## User Story
 AS A food enthusiast
 I WANT to find local restaurants based on ratings and cuisine type
