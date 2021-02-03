@@ -40,10 +40,10 @@ SO THAT I can try new food in my area
 ![screenshot](./screenshots/refreshedPage.png)
 
 ## API's and plugin
-[Zomato](https://developers.zomato.com/api) 
-[OpenStreetMap](https://www.openstreetmap.org/#map=2/56.2/10.5)
-[Leaflet](https://leafletjs.com/reference-1.7.1.html)
-[MapQuest](https://developer.mapquest.com/documentation/samples/leaflet/v2.2/routing/options/)
+* [Zomato](https://developers.zomato.com/api) 
+* [OpenStreetMap](https://www.openstreetmap.org/#map=2/56.2/10.5)
+* [Leaflet](https://leafletjs.com/reference-1.7.1.html)
+* [MapQuest](https://developer.mapquest.com/documentation/samples/leaflet/v2.2/routing/options/)
 
 ## Breakdown of Tasks
 - front end design using new css framework, Foundation
